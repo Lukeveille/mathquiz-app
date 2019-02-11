@@ -88,10 +88,10 @@ class App extends Component {
         },
       mathType: 1,
       range: 12,
+      questions: '',
       qCount: 0,
       score: 0,
       scoreBoard: [],
-      focus: 'questions',
       display: 'params',
       button: 'Submit',
       select: false,
@@ -99,12 +99,8 @@ class App extends Component {
   }
 
   updateInput(e) {
-    const input =  e.target.id === 'range'? { range: e.target.value } : e.target.id === 'questions'? { questions: e.target.value } : { answer: e.target.value }
+    const input = e.target.id === 'range'? { range: e.target.value } : e.target.id === 'questions'? { questions: e.target.value } : { answer: e.target.value }
     this.setState(input)
-  }
-  toggleFocus() {
-    const focus = this.state.focus === 'questions'? 'range' : this.state.focus === 'range'? 'questions' : this.state.focus === 'score'? 'new' : this.state.showScore? '' : 'score';
-    this.setState({focus: focus})
   }
   toggleMathType(right) {
     const mathType = this.state.mathType === 1? right? 2 : 3 : this.state.mathType === 2? right? 3 : 1 : right? 1 : 2;
@@ -202,14 +198,14 @@ class App extends Component {
     this.setState(prevState => {
       prevState.scoreBoard.push([this.mathType === 3? this.state.rand1 * this.state.rand2 : this.state.rand1, this.state.op, this.state.rand2, result, this.state.answer])
       return {
-      error: result === this.state.answer? {
+      error: result === parseInt(this.state.answer)? {
         msg: 'CORRECT',
         color: '#0a0',
       } : {
         msg: 'INCORRECT! The answer is ' + result,
         color: '#f00',
       },
-      score: result === this.state.answer? prevState.score + 1 : prevState.score,
+      score: result === parseInt(this.state.answer)? prevState.score + 1 : prevState.score,
       button: 'Next Question',
       display: this.state.qCount < this.state.questions? 'question' : 'score',
       focus: this.state.qCount < this.state.questions? 'answer' : 'score',
@@ -227,7 +223,6 @@ class App extends Component {
         initialize={this.initialize.bind(this)}
         changeMathType={this.changeMathType.bind(this)}
         focus={this.state.focus}
-        toggleFocus={this.toggleFocus.bind(this)}
         toggleMathType={this.toggleMathType.bind(this)}
         select={this.state.select}
       />
@@ -257,7 +252,6 @@ class App extends Component {
         showScore={this.state.showScore}
         scoreBoard={this.state.scoreBoard}
         focus={this.state.focus}
-        toggleFocus={this.toggleFocus.bind(this)}
       />
     }
   }
