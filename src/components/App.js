@@ -1,82 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
-
-function DefaultScreen(props) {
-  const addsub = React.createElement('input',{type: 'radio', checked: props.mathType === 1? true : false, name: "mathType", value: 1, onChange: () => { props.changeMathType(1) } });
-  const multi = React.createElement('input',{type: 'radio', checked: props.mathType === 2? true : false, name: "mathType", value: 2, onChange: () => { props.changeMathType(2) } });
-  const divide = React.createElement('input',{type: 'radio', checked: props.mathType === 3? true : false, name: "mathType", value: 3, onChange: () => { props.changeMathType(3) } });
-  return (
-    <div>
-      Highest integer you'd like to see:
-      <input id="range" value={props.range} type="text" size="5" autoComplete="off" onChange={e => props.updateInput(e)} />
-      How many questions?
-      <input id="questions" value={props.questions} type="text" size="5" autoComplete="off" onChange={e => props.updateInput(e)} />
-      <div id="mathType">
-        <p>Add/Subtract</p>
-        <p>Multiplication</p>
-        <p>Division</p>
-        {addsub}
-        {multi}
-        {divide}
-      </div>
-      <button type="button" id="start" onClick={() => {props.initialize()}} onKeyPress={e => {e.preventDefault()}}>Let's do some math!</button>
-    </div>
-  )
-}
-
-function Question(props) {
-  const question = (props.mathType === 3? props.rand1 * props.rand2 : props.rand1) + props.op + props.rand2 + ' = '
-  const answerBox = <input id="answer" value={props.answer} size="5" className="qBox" onChange={e => props.updateInput(e)} />
-  return (
-    <div>
-      <p>Question {props.qCount} / {props.questions}</p>
-      {question}{answerBox}
-      <p>
-        <button id="submit" type="button" onClick={() => {props.button === 'Submit'? props.quizResult() : props.randomInt() }} onKeyPress={e => {e.preventDefault()}}>{props.button}</button>
-      </p>
-    </div>
-  )
-}
-
-function ScoreScreen(props) {
-  const scoreHeader = <thead>
-    <tr>
-      <th>#</th>
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th colSpan="4">Question</th>
-      <th>&nbsp;</th>
-      <th colSpan="2">Answer</th>
-    </tr>
-  </thead>
-
-  const scoreBody = props.scoreBoard.map((question, i) => {
-    return <tbody key={'score'+i} id="scoreBox">
-      <tr></tr>
-      <tr>
-        <td>{i+1}</td>
-        <td>&nbsp;</td>
-        <td>{question[0]}</td>
-        <td>{question[1]}</td>
-        <td>{question[2]}</td>
-        <td>=</td>
-        <td>&nbsp;</td>
-        <td>{question[3]}</td>
-        {question[3] === question[4]? '' : <td style={{color: '#f00'}}>{question[4] === ''? '-' : question[4]}</td>}
-      </tr>
-    </tbody>
-  });
-
-  const score = <table align="center">{scoreHeader}{scoreBody}</table>;
-  return (
-    <div>
-      <p>YOU SCORED {props.score} / {props.questions}</p>
-      {props.showScore? score : <button onClick={() => {props.scoreSwitch()}} onKeyPress={e => {e.preventDefault()}}>Quiz Review</button>}
-      <br />
-      <br />
-      <button onClick={() => {props.newQuiz()}} onKeyPress={e => {e.preventDefault()}}>New Quiz</button>
-    </div>
-  )
-}
+import { DefaultScreen } from './DefaultScreen';
+import { Question } from './Question';
+import { ScoreScreen } from './ScoreScreen';
 
 class App extends Component {
   constructor(props) {
