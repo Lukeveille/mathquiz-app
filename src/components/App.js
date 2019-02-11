@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../styles/App.css';
 
 function DefaultScreen(props) {
   const addsub = React.createElement('input',{type: 'radio', checked: props.mathType === 1? true : false, name: "mathType", value: 1, onChange: () => { props.changeMathType(1) } });
