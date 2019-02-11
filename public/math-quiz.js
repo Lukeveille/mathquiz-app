@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Generates questions and prints them to the parameter box
     function questionThread() {
         // Chooses which operator to print
+        var type;
         if (mathType==1) {
             var fetch = Math.random();
             if (fetch < 0.5) {
@@ -140,12 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
         var button1 = document.createElement('input');
         var p1 = document.createElement('p');
         var p2 = document.createElement('p');
+        var qThread;
     
         var qCount = document.createTextNode('Question ' + (q+1) + ' / ' + questions);
         if (mathType==3) {
-            var qThread = document.createTextNode((rand1 * rand2) + type + rand2 + ' ' + ' = ' + ' ');
+            qThread = document.createTextNode((rand1 * rand2) + type + rand2 + ' ' + ' = ' + ' ');
         } else {
-            var qThread = document.createTextNode(rand1 + type + rand2 + ' ' + ' = ' + ' ');
+            qThread = document.createTextNode(rand1 + type + rand2 + ' ' + ' = ' + ' ');
         }
     
         p1.appendChild(qCount);

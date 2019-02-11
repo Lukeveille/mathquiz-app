@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var q = 0;
     var score = 0;
     var cancel = false;
+    var y;
     
     //Prompts user to choose type of math problem
     var math = prompt('First, what would you like to do?:\n1 - Addition/Subtraction\n2 - Multiplication\n3 - Division');
