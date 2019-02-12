@@ -1,9 +1,27 @@
 import React from 'react';
 
 export const DefaultScreen = (props) => {
-  const addsub = React.createElement('input',{type: 'radio', checked: props.mathType === 1? true : false, name: "mathType", value: 1, onChange: () => { props.changeMathType(1) } });
-  const multi = React.createElement('input',{type: 'radio', checked: props.mathType === 2? true : false, name: "mathType", value: 2, onChange: () => { props.changeMathType(2) } });
-  const divide = React.createElement('input',{type: 'radio', checked: props.mathType === 3? true : false, name: "mathType", value: 3, onChange: () => { props.changeMathType(3) } });
+  const addsub = React.createElement('input',{
+    type: 'radio',
+    name: "mathType",
+    checked: props.mathType === 1? true : false,
+    value: 1,
+    onChange: () => { props.changeMathType(1) }
+  });
+  const multi = React.createElement('input',{
+    type: 'radio',
+    name: "mathType",
+    checked: props.mathType === 2? true : false,
+    value: 2,
+    onChange: () => { props.changeMathType(2) }
+  });
+  const divide = React.createElement('input',{
+    type: 'radio',
+    name: "mathType",
+    checked: props.mathType === 3? true : false,
+    value: 3,
+    onChange: () => { props.changeMathType(3) }
+  });
   return (
     <div>
       Highest integer you'd like to see:

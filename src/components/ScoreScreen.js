@@ -23,7 +23,7 @@ export const ScoreScreen = (props) => {
         <td>=</td>
         <td>&nbsp;</td>
         <td>{question[3]}</td>
-        {question[3] === question[4]? '' : <td style={{color: '#f00'}}>{question[4] === ''? '-' : question[4]}</td>}
+        {question[3] === parseInt(question[4])? '' : <td style={{color: '#f00'}}>{question[4] === ''? '-' : question[4]}</td>}
       </tr>
     </tbody>
   });
@@ -32,7 +32,15 @@ export const ScoreScreen = (props) => {
   return (
     <div>
       <p>YOU SCORED {props.score} / {props.questions}</p>
-      {props.showScore? score : <button onClick={() => {props.scoreSwitch()}} onKeyPress={e => {e.preventDefault()}}>Quiz Review</button>}
+      {props.showScore? score : <button onClick={() => {
+        props.scoreSwitch()
+        }}
+        onKeyPress={e => {
+          e.preventDefault()
+        }}
+      >
+        Quiz Review
+      </button>}
       <br />
       <br />
       <button onClick={() => {props.newQuiz()}} onKeyPress={e => {e.preventDefault()}}>New Quiz</button>
