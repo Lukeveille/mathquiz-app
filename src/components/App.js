@@ -28,10 +28,6 @@ class App extends Component {
     const input = e.target.id === 'range'? { range: e.target.value } : e.target.id === 'questions'? { questions: e.target.value } : { answer: e.target.value }
     this.setState(input)
   }
-  // toggleMathType(right) {
-  //   const mathType = this.state.mathType === 1? right? 2 : 3 : this.state.mathType === 2? right? 3 : 1 : right? 1 : 2;
-  //   this.setState({mathType: mathType})
-  // }
   changeMathType(option) {
     this.setState({mathType: option})
   }
@@ -47,14 +43,12 @@ class App extends Component {
     this.clearError();
     this.setState({
       showScore: true,
-      // focus: 'new',
     })
   }
   newQuiz() {
     this.clearError();
     this.setState({
       display: 'params',
-      // focus: 'questions',
       score: 0,
       qCount: 0,
       scoreBoard: [],
@@ -73,7 +67,6 @@ class App extends Component {
       this.randomInt();
       this.setState({
         display: 'question',
-        // focus: 'answer',
         showScore: false,
       });
     }
@@ -138,7 +131,6 @@ class App extends Component {
       score: result === parseInt(this.state.answer)? prevState.score + 1 : prevState.score,
       button: 'Next Question',
       display: this.state.qCount < this.state.questions? 'question' : 'score',
-      // focus: this.state.qCount < this.state.questions? 'answer' : 'score',
       }
     });
   }
@@ -152,8 +144,6 @@ class App extends Component {
         updateInput={this.updateInput.bind(this)}
         initialize={this.initialize.bind(this)}
         changeMathType={this.changeMathType.bind(this)}
-        // focus={this.state.focus}
-        // toggleMathType={this.toggleMathType.bind(this)}
         select={this.state.select}
       />
     } else if (this.state.display === 'question') {
@@ -170,7 +160,6 @@ class App extends Component {
         op={this.state.op}
         randomInt={this.randomInt.bind(this)}
         answer={this.state.answer}
-        // focus={this.state.focus}
       />
     } else if (this.state.display === 'score') {
       return <ScoreScreen
@@ -181,13 +170,8 @@ class App extends Component {
         scoreSwitch={this.scoreSwitch.bind(this)}
         showScore={this.state.showScore}
         scoreBoard={this.state.scoreBoard}
-        // focus={this.state.focus}
       />
     }
-  }
-
-  componentDidMount() {
-    this.nameInput.focus();
   }
 
   render() {
@@ -200,7 +184,6 @@ class App extends Component {
           color: this.state.error.color,
           textShadow: '.3px .3px .7px #aaa'
         }}>{this.state.error.msg}</p>
-        <input ref={(input) => { this.nameInput = input }}></input>
       </div>
     )
   }
