@@ -3,8 +3,9 @@ import React from 'react';
 export const DefaultScreen = (props) => {
   const radioBtns = [1,2,3].map(num => {
     return React.createElement('input',{
+      key: 'mathType' + num,
       type: 'radio',
-      name: "mathType",
+      name: 'mathType',
       checked: props.mathType === num? true : false,
       value: num,
       onChange: () => { props.changeMathType(num) }
