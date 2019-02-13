@@ -1,26 +1,14 @@
 import React from 'react';
 
 export const DefaultScreen = (props) => {
-  const addsub = React.createElement('input',{
-    type: 'radio',
-    name: "mathType",
-    checked: props.mathType === 1? true : false,
-    value: 1,
-    onChange: () => { props.changeMathType(1) }
-  });
-  const multi = React.createElement('input',{
-    type: 'radio',
-    name: "mathType",
-    checked: props.mathType === 2? true : false,
-    value: 2,
-    onChange: () => { props.changeMathType(2) }
-  });
-  const divide = React.createElement('input',{
-    type: 'radio',
-    name: "mathType",
-    checked: props.mathType === 3? true : false,
-    value: 3,
-    onChange: () => { props.changeMathType(3) }
+  const radioBtns = [1,2,3].map(num => {
+    return React.createElement('input',{
+      type: 'radio',
+      name: "mathType",
+      checked: props.mathType === num? true : false,
+      value: num,
+      onChange: () => { props.changeMathType(num) }
+    });
   });
   return (
     <div>
@@ -32,9 +20,7 @@ export const DefaultScreen = (props) => {
         <p>Add/Subtract</p>
         <p>Multiplication</p>
         <p>Division</p>
-        {addsub}
-        {multi}
-        {divide}
+        {radioBtns}
       </div>
       <button type="button" id="start" onClick={() => {props.initialize()}} onKeyPress={e => {e.preventDefault()}}>Let's do some math!</button>
     </div>
